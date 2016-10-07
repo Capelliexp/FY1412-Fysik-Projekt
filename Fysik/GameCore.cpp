@@ -10,7 +10,7 @@ GameCore::GameCore() {
 	gameOver = false;
 }
 
-GameCore::~GameCore() {
+GameCore::~GameCore(){
 }
 
 bool GameCore::Update(float dt) {	//Detta händer per frame / logic
