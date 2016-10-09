@@ -5,7 +5,7 @@
 
 using namespace sf;
 
-class Ground
+class Ground : public Drawable
 {
 private:
 	virtual void draw(RenderTarget& target, RenderStates states) const;
@@ -14,6 +14,20 @@ public:
 	Ground();
 	~Ground();
 
+	bool collision;
+
+	//gröna
+	RectangleShape g1;
+	RectangleShape g2;
+
+	//bruna
+	RectangleShape w1;
+	RectangleShape w2;
+	RectangleShape w3;
+
+	//Något i stil med detta
+	//void Update(float dt);
+	//bool Update(float dt, Hero hero_object, Enemy enemy_object);
 };
 
 
