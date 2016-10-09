@@ -32,5 +32,8 @@
     <ClInclude Include="Ball.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Ground.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
