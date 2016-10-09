@@ -3,13 +3,14 @@
 #include "Ball.hpp"
 
 Ball::Ball() {
-	startPosX = 5;
-	startPosY = 5;
+	startPosX = 0;
+	startPosY = 0;
 	accelerationX = 0;
 	accelerationY = 0;
-	weight = 5;
 	spin = 0;
-	radius = 1;
+	radius = 0;
+	weight = 0;
+	materialFriction = 0;
 }
 
 Ball::~Ball() {

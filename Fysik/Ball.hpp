@@ -13,9 +13,10 @@ public:
 	float startPosY;
 	float accelerationX;
 	float accelerationY;
-	float weight;
 	float spin;
 	float radius;
+	float weight;
+	float materialFriction;
 
 	Ball();
 	~Ball();
