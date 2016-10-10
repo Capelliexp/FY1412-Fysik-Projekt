@@ -20,7 +20,7 @@ Ball::Ball() {
 Ball::~Ball() {
 }
 
-void Ball::update(float dt, float* returnvalues[]) {	//returnerar array av 2, x & y
+void Ball::update(float dt) {
 }
 
 void Ball::draw(RenderTarget& target, RenderStates states) const {

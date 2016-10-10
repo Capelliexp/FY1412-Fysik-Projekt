@@ -25,7 +25,7 @@ public:
 	Ball();
 	~Ball();
 
-	void update(float dt, float* returnvalues[]);	//returnerar array av 2, x & y
+	void update(float dt);
 };
 #endif
 

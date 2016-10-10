@@ -6,6 +6,7 @@ Ground::Ground()
 {
 	//Rita upp marken? - sätt standardvärden på marken, om de senare ska ändras sätts det i en update-funktion
 	//http://www.sfml-dev.org/tutorials/2.0/graphics-shape.php
+	//http://www.sfml-dev.org/documentation/2.0/classsf_1_1RectangleShape.php
 }
 
 Ground::~Ground()
