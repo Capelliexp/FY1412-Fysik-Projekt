@@ -155,11 +155,13 @@
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="GameCore.cpp" />
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="GameCore.hpp" />
+    <ClInclude Include="Ground.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
