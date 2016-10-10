@@ -1,6 +1,8 @@
-﻿  Ball.cpp
-d:\git repos\fy1412-fysik-projekt\fysik\ball.cpp(15): error C2228: left of '.setFillColor' must have class/struct/union
-  d:\git repos\fy1412-fysik-projekt\fysik\ball.cpp(15): note: type is 'sf::CircleShape [50]'
-d:\git repos\fy1412-fysik-projekt\fysik\ball.cpp(26): error C2664: 'void sf::RenderTarget::draw(const sf::Vertex *,std::size_t,sf::PrimitiveType,const sf::RenderStates &)': cannot convert argument 1 from 'const sf::CircleShape [50]' to 'const sf::Drawable &'
-  d:\git repos\fy1412-fysik-projekt\fysik\ball.cpp(26): note: Reason: cannot convert from 'const sf::CircleShape [50]' to 'const sf::Drawable'
-  d:\git repos\fy1412-fysik-projekt\fysik\ball.cpp(26): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+﻿  Water.cpp
+  main.cpp
+  Ground.cpp
+  GameCore.cpp
+  Ball.cpp
+  Generating Code...
+  Fysik.vcxproj -> D:\Git Repos\FY1412-Fysik-Projekt\x64\Debug\Fysik.exe
+  Fysik.vcxproj -> D:\Git Repos\FY1412-Fysik-Projekt\x64\Debug\Fysik.pdb (Full PDB)

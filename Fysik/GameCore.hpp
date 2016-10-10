@@ -6,6 +6,8 @@
 #include <vector>
 
 #include "Ball.h"
+#include "Water.h"
+#include "Ground.h"
 
 using namespace sf;
 
@@ -15,6 +17,10 @@ private:
 
 public:
 	bool gameOver;
+
+	Ball canonBall;
+	Water waterPool;
+	Ground allGround;
 
 	GameCore();
 	~GameCore();

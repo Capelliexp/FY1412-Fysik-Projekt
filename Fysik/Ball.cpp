@@ -21,6 +21,7 @@ Ball::~Ball() {
 }
 
 void Ball::update(float dt) {
+	//används .move() för förflyttning
 }
 
 void Ball::draw(RenderTarget& target, RenderStates states) const {

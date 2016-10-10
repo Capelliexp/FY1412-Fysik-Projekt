@@ -1,12 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "Ground.hpp"
+#include "Ground.h"
 
 Ground::Ground()
 {
-	//Rita upp marken? - sätt standardvärden på marken, om de senare ska ändras sätts det i en update-funktion
+	//Rita upp marken? - sätt standardvärden på marken, om de senare ska ändras per frame sätts det i en update-funktion
 	//http://www.sfml-dev.org/tutorials/2.0/graphics-shape.php
 	//http://www.sfml-dev.org/documentation/2.0/classsf_1_1RectangleShape.php
+
+	//när du har skapat marken kan du ta en titt på Water() och se till att vattnet "fyller" poolen i mitten av banan
 }
 
 Ground::~Ground()
