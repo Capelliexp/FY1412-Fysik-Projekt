@@ -6,8 +6,9 @@
 
 using namespace sf;
 
-GameCore::GameCore() {
+GameCore::GameCore() {	//skapa alla objekt med egenskaper
 	gameOver = false;
+	//Ball canonBall = new Ball();
 }
 
 GameCore::~GameCore(){
@@ -18,4 +19,6 @@ bool GameCore::Update(float dt) {	//Detta händer per frame / logic
 }
 
 void GameCore::draw(RenderTarget& target, RenderStates states) const {	//detta ritas per frame / graphics
+
+	//target.draw(canonBall);
 }

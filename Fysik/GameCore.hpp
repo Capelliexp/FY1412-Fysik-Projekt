@@ -5,6 +5,8 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
+#include "Ball.h"
+
 using namespace sf;
 
 class GameCore : public Drawable {

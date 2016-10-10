@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "Ball.hpp"
+#include "Ball.h"
 
 Ball::Ball() {
 	startPosX = 0;
