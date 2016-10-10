@@ -8,6 +8,8 @@
 using namespace sf;
 
 class Ball : public Drawable {
+private:
+	virtual void draw(RenderTarget& target, RenderStates states) const;
 public:
 	float startPosX;
 	float startPosY;
@@ -18,10 +20,12 @@ public:
 	float weight;
 	float materialFriction;
 
+	sf::CircleShape ballShape;
+
 	Ball();
 	~Ball();
 
-	float* CalcNewPos(float dt);	//returnerar array av 2, x & y
+	void update(float dt, float* returnvalues[]);	//returnerar array av 2, x & y
 };
 #endif
 

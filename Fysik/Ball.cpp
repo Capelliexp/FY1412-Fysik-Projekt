@@ -11,13 +11,19 @@ Ball::Ball() {
 	radius = 0;
 	weight = 0;
 	materialFriction = 0;
+
+	ballShape.setRadius(5);
+	ballShape.setOrigin(20.0f, 20.0f);
+	ballShape.setFillColor(sf::Color(100, 250, 50));
 }
 
 Ball::~Ball() {
 }
 
-float* CalcNewPos(float dt) {	//returnerar array av 2, x & y
-	float returnValues[2];
+void Ball::update(float dt, float* returnvalues[]) {	//returnerar array av 2, x & y
+}
 
-	return returnValues;
+void Ball::draw(RenderTarget& target, RenderStates states) const {
+
+	target.draw(ballShape);
 }
