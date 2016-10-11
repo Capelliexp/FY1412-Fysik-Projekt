@@ -17,7 +17,7 @@ public:
 	bool collision;
 
 	//gröna
-	RectangleShape g1;
+	RectangleShape g1;	//vad är skillnaden mellan grön och brun mark?
 	RectangleShape g2;
 
 	//bruna

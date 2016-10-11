@@ -17,6 +17,7 @@ private:
 
 public:
 	bool gameOver;
+	long double totalTime;
 
 	Ball canonBall;
 	Water waterPool;

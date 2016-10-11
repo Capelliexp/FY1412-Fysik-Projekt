@@ -5,9 +5,9 @@
 Water::Water() {
 	temp = 20;	//behaglig badtemperatur
 
-	waterRectangle.setSize(sf::Vector2f(100, 50));	//bredd, höjd
-	waterRectangle.setFillColor(sf::Color::Blue);
-	waterRectangle.setPosition(10, 20);				//koordinater på mitten?
+	waterRectangle.setSize(sf::Vector2f(400, 200));	//bredd, höjd
+	waterRectangle.setFillColor(sf::Color(50, 50, 255));
+	waterRectangle.setPosition(200, 350);			//koordinater på övre-vänstra hörnet
 }
 
 Water::~Water() {

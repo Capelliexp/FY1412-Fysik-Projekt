@@ -25,7 +25,7 @@ public:
 	Ball();
 	~Ball();
 
-	void update(float dt);
+	void update(float dt, long double totalTime);
 };
 #endif
 
