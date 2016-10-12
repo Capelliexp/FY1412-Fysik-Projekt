@@ -10,7 +10,6 @@ int main() {
 	GameCore game;
 
 	RenderWindow window(VideoMode(800, 600), "Fysik Projekt");
-	window.setFramerateLimit(9999);
 	Clock gameTime;
 	int fpsCounter = 0;
 

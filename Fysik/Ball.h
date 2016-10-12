@@ -18,7 +18,25 @@ public:
 	float spin;
 	float radius;
 	float weight;
+	float density;
 	float materialFriction;
+
+	float densityMedium;
+	float viscosity;
+
+	float speedX;
+	float speedY;
+	float speedTot;
+
+	float ReX;
+	float ReY;
+	float CdX;
+	float CdY;
+
+	float airResX;
+	float airResY;
+
+	//https://www.grc.nasa.gov/www/k-12/airplane/dragsphere.html
 
 	CircleShape ballShape;
 
@@ -26,6 +44,6 @@ public:
 	~Ball();
 
 	void update(float dt, long double totalTime);
+	void SphereDragCoefficienCalc();
 };
 #endif
-
