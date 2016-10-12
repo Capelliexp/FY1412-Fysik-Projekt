@@ -43,7 +43,7 @@ void Ball::update(float dt, long double totalTime){
 
 	sf::Vector2f speedCalcTemp = ballShape.getPosition();	//måste vara innan .move
 
-	ballShape.move(accelerationX*dt - airResX*dt, -accelerationY*dt + 9.82f*dt*totalTime + airResY*dt);
+	ballShape.move(accelerationX*dt/* - airResX*dt*/, -accelerationY*dt + 9.82f*dt*totalTime/* + airResY*dt*/);
 
 	speedX = (speedCalcTemp.x - ballShape.getPosition().x)*(1 / dt);
 	speedY = (speedCalcTemp.y - ballShape.getPosition().y)*(1 / dt);

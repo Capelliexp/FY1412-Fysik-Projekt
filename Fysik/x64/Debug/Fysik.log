@@ -1,8 +1,4 @@
 ﻿  Ball.cpp
 d:\git repos\fy1412-fysik-projekt\fysik\ball.cpp(46): warning C4244: 'argument': conversion from 'long double' to 'float', possible loss of data
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  main.cpp
-  GameCore.cpp
   Fysik.vcxproj -> D:\Git Repos\FY1412-Fysik-Projekt\x64\Debug\Fysik.exe
   Fysik.vcxproj -> D:\Git Repos\FY1412-Fysik-Projekt\x64\Debug\Fysik.pdb (Full PDB)
