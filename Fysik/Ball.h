@@ -20,7 +20,7 @@ public:
 	float weight;
 	float materialFriction;
 
-	sf::CircleShape ballShape;
+	CircleShape ballShape;
 
 	Ball();
 	~Ball();
