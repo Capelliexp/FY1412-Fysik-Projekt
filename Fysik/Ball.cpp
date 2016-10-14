@@ -38,8 +38,8 @@ void Ball::update(float dt, long double totalTime){
 
 	airResX = 0.5f*CdX*densityMedium*(radius*radius*3.14f)*speedX;	//ändra densityMedium när bollen är i vatten
 	airResY = 0.5f*CdY*densityMedium*(radius*radius*3.14f)*speedY;
-	std::cout << "airResX: " << airResX << std::endl;
-	std::cout << "airResY: " << airResY << std::endl;
+	//std::cout << "airResX: " << airResX << std::endl;
+	//std::cout << "airResY: " << airResY << std::endl;
 
 	sf::Vector2f speedCalcTemp = ballShape.getPosition();	//måste vara innan .move
 

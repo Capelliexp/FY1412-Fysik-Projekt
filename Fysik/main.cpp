@@ -11,13 +11,12 @@ int main() {
 
 	RenderWindow window(VideoMode(800, 600), "Fysik Projekt");
 	Clock gameTime;
-	int fpsCounter = 0;
+	Clock frameTime;
 
 	bool gameOver = false;
 	std::string endBlock;
 
 	while (window.isOpen()){
-		fpsCounter++;
 
 		Event event;
 		while (window.pollEvent(event)) {
@@ -34,11 +33,12 @@ int main() {
 			window.close();
 		}
 
-		if (fpsCounter > 60) {	//begränsar FPS men ser till att game.Update() kan köras hur snabbt den vill
+		if (frameTime.getElapsedTime().asSeconds() > 1/60) {
+			//std::cout << "ny frame" << std::endl;
 			window.clear();
 			window.draw(game);
 			window.display();
-			fpsCounter = 0;
+			frameTime.restart();
 		}
 	}
 
