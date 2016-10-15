@@ -15,8 +15,8 @@ Ball::Ball() {
 	density = 1.0f;
 	materialFriction = 0.0f;
 
-	speedX = 1000000.0f;
-	speedY = 1000000.0f;
+	speedX = 1.0f;
+	speedY = 1.0f;
 	speedTot = 0;
 
 	densityMedium = 1.0f;	//densitet av det MEDIUM som bollen färdas igenom
