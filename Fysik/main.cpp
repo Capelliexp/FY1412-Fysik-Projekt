@@ -9,7 +9,7 @@ using namespace sf;
 int main() {
 	GameCore game;
 
-	RenderWindow window(VideoMode(800, 600), "Fysik Projekt");
+	RenderWindow window(VideoMode(1280, 720), "Fysik Projekt");
 	Clock gameTime;
 	Clock frameTime;
 
@@ -26,6 +26,7 @@ int main() {
 		}
 
 		gameOver = game.Update(gameTime.restart().asSeconds());
+		std::cout << "ny update" << std::endl;
 
 		if (gameOver == true) {
 			break;
@@ -34,7 +35,7 @@ int main() {
 		}
 
 		if (frameTime.getElapsedTime().asSeconds() >= 1/60) {
-			//std::cout << "ny frame" << std::endl;
+			std::cout << "ny frame" << std::endl;
 			window.clear();
 			window.draw(game);
 			window.display();

@@ -13,12 +13,11 @@ private:
 public:
 	float startPosX;
 	float startPosY;
-	float accelerationX;
-	float accelerationY;
+	float startSpeedX;
+	float startSpeedY;
 	float spin;
 	float radius;
 	float weight;
-	float density;
 	float materialFriction;
 
 	float densityMedium;
@@ -39,6 +38,7 @@ public:
 	//https://www.grc.nasa.gov/www/k-12/airplane/dragsphere.html
 
 	CircleShape ballShape;
+	Texture canonTex;
 
 	Ball();
 	~Ball();

@@ -12,12 +12,13 @@ private:
 	virtual void draw(RenderTarget& target, RenderStates states) const;
 
 public:
-	Water();
-	~Water();
-
 	bool collision;
 	int temp;
 
 	RectangleShape waterRectangle;
+	Texture waterTex;
+
+	Water();
+	~Water();
 };
 #endif

@@ -7,7 +7,12 @@ Water::Water() {
 
 	waterRectangle.setSize(sf::Vector2f(400, 200));	//bredd, höjd
 	waterRectangle.setFillColor(sf::Color(50, 50, 255));
-	waterRectangle.setPosition(200, 350);			//koordinater på övre-vänstra hörnet
+	waterRectangle.setPosition(500, 350);			//koordinater på övre-vänstra hörnet
+
+	waterTex.loadFromFile("../textures/water.jpg");
+	const Texture *tex1 = &waterTex;
+
+	waterRectangle.setTexture(&waterTex);
 }
 
 Water::~Water() {

@@ -8,6 +8,7 @@
 #include "Ball.h"
 #include "Water.h"
 #include "Ground.h"
+#include "Sky.h"
 
 using namespace sf;
 
@@ -22,6 +23,7 @@ public:
 	Ball canonBall;
 	Water waterPool;
 	Ground allGround;
+	Sky skyBox;
 
 	GameCore();
 	~GameCore();

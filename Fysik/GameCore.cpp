@@ -25,6 +25,7 @@ bool GameCore::Update(float dt) {	//Detta händer per frame / logic
 void GameCore::draw(RenderTarget& target, RenderStates states) const {	//detta ritas per frame / graphics
 
 	//OBS! den som ritas ut sist ritas överst
+	target.draw(skyBox);
 	target.draw(waterPool);
 	target.draw(allGround);
 	target.draw(canonBall);
