@@ -7,7 +7,7 @@
 Ball::Ball() {
 	startPosX = 50.0f;
 	startPosY = 350 - 8.0f;
-	startSpeedX = 40.0f;
+	startSpeedX = 250.0f;
 	startSpeedY = 40.0f;
 	spin = 0.0f;
 	radius = 0.085f;
@@ -19,6 +19,9 @@ Ball::Ball() {
 
 	densityMedium = 1.21f;	//densitet av det MEDIUM som bollen färdas igenom, byt till 1000 i vatten
 	viscosity = 0.0000183f;	//viskositet av luft
+
+	CdX = 0.5f;
+	CdY = 0.5f;
 
 	ballShape.setRadius(radius*47);
 	ballShape.setPosition(startPosX, startPosY);
@@ -34,20 +37,28 @@ Ball::~Ball() {
 }
 
 void Ball::update(float dt, long double totalTime){
-	ReX = (densityMedium*radius * 2 / viscosity)*speedX;		//ändra viscosity när bollen är i vatten
-	ReY = (densityMedium*radius * 2 / viscosity)*speedY;
+	//ReX = (densityMedium*radius * 2 / viscosity)*speedX;		//ändra viscosity när bollen är i vatten
+	//ReY = (densityMedium*radius * 2 / viscosity)*speedY;
 
-	SphereDragCoefficienCalc();
+	//SphereDragCoefficienCalc();
+	
+	if (speedX >= 0)
+		airResX = -0.5f*CdX*densityMedium*(radius*radius*3.14f)*speedX*speedX;	//ändra densityMedium när bollen är i vatten
+	else
+		airResX = -0.5f*CdX*densityMedium*(radius*radius*3.14f)*speedX*speedX;
 
-	airResX = 0.5f*CdX*densityMedium*(radius*radius*3.14f)*speedX;	//ändra densityMedium när bollen är i vatten
-	airResY = 0.5f*CdY*densityMedium*(radius*radius*3.14f)*speedY;
+	if(speedY>=0)
+		airResY = -0.5f*CdY*densityMedium*(radius*radius*3.14f)*speedY*speedY;
+	else
+		airResY = 0.5f*CdY*densityMedium*(radius*radius*3.14f)*speedY*speedY;
+	
 
 	std::cout << "airResX: " << airResX*dt << std::endl;
 	std::cout << "airResY: " << airResY*dt << std::endl;
 
 	sf::Vector2f speedCalcTemp = ballShape.getPosition();	//måste vara innan .move
 
-	ballShape.move(startSpeedX*dt + (airResX*dt)/weight, -startSpeedY*dt + 9.82f*dt*totalTime - (airResY*dt)/weight);
+	ballShape.move((startSpeedX*dt) + ((airResX*dt)/weight), (-startSpeedY*dt) + (9.82f*dt*(totalTime*totalTime)/2) - ((airResY*dt)/weight));
 
 	speedX = (speedCalcTemp.x - ballShape.getPosition().x)*(1 / dt);
 	speedY = (speedCalcTemp.y - ballShape.getPosition().y)*(1 / dt);
