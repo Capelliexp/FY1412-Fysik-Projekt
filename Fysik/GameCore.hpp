@@ -29,6 +29,7 @@ public:
 	~GameCore();
 	bool Update(float dt);
 	int CollisionTest(Ball canonBall, Ground allGround, Water waterPool);
-	int Bonk(CircleShape ball, RectangleShape sq);
+	int Bonk(Ball ball, RectangleShape sq);
+	void Hit(Ball ball, Vector2f normal);
 };
 #endif

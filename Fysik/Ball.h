@@ -35,6 +35,9 @@ public:
 	float airResX;
 	float airResY;
 
+	Vector2f direction;
+	Vector2f realPosition;
+
 	//https://www.grc.nasa.gov/www/k-12/airplane/dragsphere.html
 
 	CircleShape ballShape;
@@ -45,5 +48,6 @@ public:
 
 	void update(float dt, long double totalTime);
 	void SphereDragCoefficienCalc();
+	
 };
 #endif

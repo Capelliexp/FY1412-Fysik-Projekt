@@ -6,8 +6,8 @@
 
 Ball::Ball() {
 	startPosX = 50.0f;
-	startPosY = 350 - 8.0f;
-	startSpeedX = 250.0f;
+	startPosY = 350 - 8.0f - 30.0f;
+	startSpeedX = 20.0f;
 	startSpeedY = 40.0f;
 	spin = 0.0f;
 	radius = 0.085f;
@@ -56,13 +56,18 @@ void Ball::update(float dt, long double totalTime){
 	std::cout << "airResX: " << airResX*dt << std::endl;
 	std::cout << "airResY: " << airResY*dt << std::endl;
 
-	sf::Vector2f speedCalcTemp = ballShape.getPosition();	//måste vara innan .move
+	direction = ballShape.getPosition();	//måste vara innan .move
 
 	ballShape.move((startSpeedX*dt) + ((airResX*dt)/weight), (-startSpeedY*dt) + (9.82f*dt*(totalTime*totalTime)/2) - ((airResY*dt)/weight));
 
-	speedX = (speedCalcTemp.x - ballShape.getPosition().x)*(1 / dt);
-	speedY = (speedCalcTemp.y - ballShape.getPosition().y)*(1 / dt);
+	//direction = { (ballShape.getPosition().x - speedCalcTemp.x) , (ballShape.getPosition().y - speedCalcTemp.y) };
+
+	speedX = (direction.x - ballShape.getPosition().x)*(1 / dt);
+	speedY = (direction.y - ballShape.getPosition().y)*(1 / dt);
 	//speedTot = sqrt((speedX*speedX) + (speedY*speedY));
+
+	realPosition.x = ballShape.getPosition().x + ballShape.getRadius() / 2;
+	realPosition.y = ballShape.getPosition().y + ballShape.getRadius() / 2;
 }
 
 void Ball::draw(RenderTarget& target, RenderStates states) const {

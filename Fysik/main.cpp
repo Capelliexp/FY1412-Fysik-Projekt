@@ -35,7 +35,7 @@ int main() {
 		}
 
 		if (frameTime.getElapsedTime().asSeconds() >= 1/60) {
-			std::cout << "ny frame" << std::endl;
+			std::cout << "ny frame" << std::endl << std::endl;
 			window.clear();
 			window.draw(game);
 			window.display();
