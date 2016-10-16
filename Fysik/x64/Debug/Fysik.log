@@ -1,3 +1,2 @@
-﻿  Ball.cpp
-c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(61): warning C4244: 'argument': conversion from 'long double' to 'float', possible loss of data
+﻿  GameCore.cpp
   Fysik.vcxproj -> C:\Users\tina14\Documents\FY1412-Fysik-Projekt\x64\Debug\Fysik.exe
