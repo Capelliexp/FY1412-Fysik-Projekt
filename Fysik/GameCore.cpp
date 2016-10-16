@@ -37,6 +37,8 @@ int GameCore::CollisionTest(Ball ball, Ground ground, Water water)
 	return 0;
 }
 
+//http://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection/402010#402010
+
 int GameCore::Bonk(CircleShape ball, RectangleShape sq)
 {
 	float r = ball.getRadius();
