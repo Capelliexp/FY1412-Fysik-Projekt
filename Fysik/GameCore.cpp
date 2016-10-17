@@ -34,27 +34,21 @@ void GameCore::draw(RenderTarget& target, RenderStates states) const {	//detta r
 
 int GameCore::CollisionTest(Ball ball, Ground ground, Water water)
 {
-	if (Bonk(ball, ground.dirt1) == 1)
-		Hit(ball, Vector2f(0.0f, -1.0f));
-	//else if (Bonk(ball, ground.dirt1) == 2)
-	//{
-	//	std::cout << "weird yao454545454545454545445445" << std::endl;
-	//	std::cout << "weird yao454545454545454545445445" << std::endl;
-	//	std::cout << "weird yao454545454545454545445445" << std::endl;
-	//	std::cout << "weird yao454545454545454545445445" << std::endl;
-	//	std::cout << "weird yao454545454545454545445445" << std::endl;
-	//	std::cout << "weird yao454545454545454545445445" << std::endl;
-	//}
+	if (HitTest(ball, ground.dirt1) == 1  || HitTest(ball, ground.dirt2) == 1  || HitTest(ball, ground.grass2) == 1)
+		HitGround(ball, Vector2f(0.0f, -1.0f));
 
-	
+	if (HitTest(ball, ground.dirt3) == 1)	//OBS! dirt3 har 2 sidor
+		HitGround(ball, Vector2f(-1.0f, 0.0f));
 
+	if (HitTest(ball, water.waterRectangle) == 1)
+		HitWater(ball, water);
 
 	return 0;
 }
 
 //http://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection/402010#402010
 
-int GameCore::Bonk(Ball ball, RectangleShape sq)
+int GameCore::HitTest(Ball ball, RectangleShape sq)
 {
 	float r = ball.ballShape.getRadius();
 	Vector2f ballPos = ball.realPosition;
@@ -63,24 +57,24 @@ int GameCore::Bonk(Ball ball, RectangleShape sq)
 	sqPos.x = sqPos.x + sq.getSize().x / 2;
 	sqPos.y = sqPos.y + sq.getSize().y / 2;
 
-	Vector2f bonkDis = { abs(ballPos.x - sqPos.x), abs(ballPos.y - sqPos.y) };
+	Vector2f HitTestDis = { abs(ballPos.x - sqPos.x), abs(ballPos.y - sqPos.y) };
 
 	std::cout << sq.getSize().x << std::endl;
 
-	if (bonkDis.x > ((sq.getSize().x) / 2 + r))
+	if (HitTestDis.x > ((sq.getSize().x) / 2 + r))
 		return 0;
-	if (bonkDis.y > (sq.getSize().y / 2 + r))
+	if (HitTestDis.y > (sq.getSize().y / 2 + r))
 		return 0;
 
-	if (bonkDis.x <= (sq.getSize().x / 2))
+	if (HitTestDis.x <= (sq.getSize().x / 2))
 		return 1;
-	if (bonkDis.y <= (sq.getSize().y / 2))
+	if (HitTestDis.y <= (sq.getSize().y / 2))
 		return 1;
 
 	return 2;
 }
 
-void GameCore::Hit(Ball ball, Vector2f normal)
+void GameCore::HitGround(Ball ball, Vector2f normal)
 {
 	Vector2f dir = { ball.ballShape.getPosition().x - ball.direction.x, ball.ballShape.getPosition().y - ball.direction.y };
 	dir.x = -dir.x / abs(dir.x + dir.y);
@@ -91,4 +85,8 @@ void GameCore::Hit(Ball ball, Vector2f normal)
 	ball.speedY = -ball.speedY;
 	//ball.startSpeedY = -ball.startSpeedY*5;
 	totalTime = 0;
+}
+
+void GameCore::HitWater(Ball ball, Water water){
+	ball.densityMedium = 1000.0f;
 }

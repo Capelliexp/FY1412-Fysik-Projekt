@@ -48,6 +48,5 @@ public:
 
 	void update(float dt, long double totalTime);
 	void SphereDragCoefficienCalc();
-	
 };
 #endif

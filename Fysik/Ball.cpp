@@ -7,8 +7,8 @@
 Ball::Ball() {
 	startPosX = 50.0f;
 	startPosY = 350 - 8.0f - 30.0f;
-	startSpeedX = 20.0f;
-	startSpeedY = 40.0f;
+	startSpeedX = 100.0f;
+	startSpeedY = 80.0f;
 	spin = 0.0f;
 	radius = 0.085f;
 	weight = 25.0f;
@@ -41,7 +41,7 @@ void Ball::update(float dt, long double totalTime){
 	//ReY = (densityMedium*radius * 2 / viscosity)*speedY;
 
 	//SphereDragCoefficienCalc();
-	
+
 	if (speedX >= 0)
 		airResX = -0.5f*CdX*densityMedium*(radius*radius*3.14f)*speedX*speedX;	//ändra densityMedium när bollen är i vatten
 	else
@@ -60,7 +60,8 @@ void Ball::update(float dt, long double totalTime){
 
 	ballShape.move((startSpeedX*dt) + ((airResX*dt)/weight), (-startSpeedY*dt) + (9.82f*dt*(totalTime*totalTime)/2) - ((airResY*dt)/weight));
 
-	//direction = { (ballShape.getPosition().x - speedCalcTemp.x) , (ballShape.getPosition().y - speedCalcTemp.y) };
+	startSpeedX = startSpeedX - ((airResX*dt) / weight);	//ny
+	startSpeedY = startSpeedY - ((airResY*dt) / weight);
 
 	speedX = (direction.x - ballShape.getPosition().x)*(1 / dt);
 	speedY = (direction.y - ballShape.getPosition().y)*(1 / dt);
