@@ -48,7 +48,7 @@ int main() {
 		std::cin >> endBlock;
 	}
 	else if (gameOver == 2) {
-		std::cout << std::endl << std::endl << std::endl << "You hit the target! Good job!" << std::endl;
+		std::cout << std::endl << std::endl << std::endl << "Did bonk, made BOOM" << std::endl;
 		std::cin >> endBlock;
 	}
 	return 0;

@@ -12,6 +12,7 @@ class Explosion : public Drawable {
 private:
 	virtual void draw(RenderTarget& target, RenderStates states) const;
 public:
+	int showTexLoop;
 
 	CircleShape explosionShape;
 	Texture boomTex;

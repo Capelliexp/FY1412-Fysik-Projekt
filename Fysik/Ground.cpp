@@ -27,8 +27,8 @@ Ground::Ground(){
 
 	//-----
 
-	goal.setSize(sf::Vector2f(70, 70));	//byts denna måste explosion också flyttas
-	goal.setPosition(1000, 290);
+	goal.setSize(sf::Vector2f(70, 70));
+	goal.setPosition(1000, 290);	//byts denna måste explosion också flyttas
 
 	//-----
 
