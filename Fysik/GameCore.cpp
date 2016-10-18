@@ -7,7 +7,10 @@
 
 using namespace sf;
 
-GameCore::GameCore() {	//skapa alla objekt med egenskaper
+GameCore::GameCore(float vx, float vy) {	//skapa alla objekt med egenskaper
+	canonBall.startSpeedX = vx;
+	canonBall.startSpeedY = vy;
+	
 	gameOver = 0;
 	totalTime = 0;
 	waterMode = false;
