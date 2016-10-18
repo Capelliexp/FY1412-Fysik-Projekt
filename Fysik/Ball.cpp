@@ -8,8 +8,8 @@
 Ball::Ball() {
 	startPosX = 50.0f;
 	startPosY = 350 - 8.0f - 30.0f;
-	startSpeedX = 40.0f;
-	startSpeedY = 40.0f;
+	startSpeedX = 20.0f;
+	startSpeedY = 20.0f;
 	spin = 0.0f;
 	radius = 0.085f;
 	weight = 25.0f;

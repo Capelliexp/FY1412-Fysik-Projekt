@@ -22,9 +22,13 @@ public:
 	RectangleShape dirt2;
 	RectangleShape dirt3;
 
+	//goal
+	RectangleShape goal;
+
 	//texturer
 	Texture grassTex;
 	Texture dirtTex;
+	Texture targetTex;
 
 	Ground();
 	~Ground();

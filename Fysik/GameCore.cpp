@@ -8,23 +8,41 @@
 using namespace sf;
 
 GameCore::GameCore() {	//skapa alla objekt med egenskaper
-	gameOver = false;
+	gameOver = 0;
 	totalTime = 0;
 	waterMode = false;
 	waterModeCollision = false;
+	gameOverResPos = 0;
+	hitTarget = false;
 }
 
 GameCore::~GameCore() {
 }
 
-bool GameCore::Update(float dt) {	//Detta händer per frame / logic
+int GameCore::Update(float dt) {	//Detta händer per frame / logic
 	totalTime += dt;
 
 	//canonBall.densityMedium = 1000;
 
 	canonBall.update(dt, totalTime, waterModeCollision);
 	CollisionTest(allGround, waterPool);
+
+	gameOver = TestGameOver();
+
 	return (gameOver);
+}
+
+bool GameCore::TestGameOver() {
+	if (canonBall.speedX == 0 && canonBall.speedY == 0) {
+		gameOverResPos++;
+		if (gameOverResPos >= 3) {
+			if (hitTarget == true)
+				return 2;
+			else
+				return 1;
+		}
+	}
+	return false;
 }
 
 void GameCore::draw(RenderTarget& target, RenderStates states) const {	//detta ritas per frame / graphics
@@ -47,8 +65,15 @@ int GameCore::CollisionTest(Ground ground, Water water)
 	if (HitTest(water.waterRectangle) == 1 && waterMode == false) {
 		HitWater();
 	}
+	if (HitTest(ground.goal) == 1) {
+		HitTarget();
+	}
 
 	return 0;
+}
+
+void GameCore::HitTarget() {
+
 }
 
 //http://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection/402010#402010
