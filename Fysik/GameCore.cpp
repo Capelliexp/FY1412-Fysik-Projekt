@@ -110,15 +110,29 @@ int GameCore::HitTest(RectangleShape sq)
 void GameCore::HitGround(Vector2f normal){
 	if (waterMode == false) {
 		Vector2f dir = { canonBall.ballShape.getPosition().x - canonBall.direction.x, canonBall.ballShape.getPosition().y - canonBall.direction.y };
-		dir.x = -dir.x / abs(dir.x + dir.y);
-		dir.y = -dir.y / abs(dir.x + dir.y);
+		angle = abs(dir.x + dir.y);
+		dir.x = -dir.x / angle;
+		dir.y = -dir.y / angle;
 
-		float angle = ((acos(dir.x*normal.x + dir.y*normal.y)) / 180)*3.1415f;
+		//angle = abs(dir.x + dir.y);
+		//angle = abs(normal.x + normal.y);
+
+		angle = dir.x*normal.x + dir.y*normal.y;
+		angle = acos(angle);
+		angle = (angle * 180)/3.1415f;
 
 		canonBall.startPosX = canonBall.ballShape.getPosition().x;
 		canonBall.startPosY = canonBall.ballShape.getPosition().y;
 
-		canonBall.startSpeedY = canonBall.restitution*canonBall.startSpeedY;
+		if (abs(angle) < 45)
+			waterModeCollision = true;
+		else if(45 <= abs(angle) < 75 )
+			canonBall.startSpeedY = canonBall.restitution*canonBall.startSpeedY;
+		else
+		{
+			//rock n roll
+		}
+
 
 		//canonBall.speedY = -canonBall.speedY;
 		//canonBall.startSpeedY = -canonBall.startSpeedY*5;

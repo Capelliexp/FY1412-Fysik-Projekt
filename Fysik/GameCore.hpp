@@ -24,6 +24,7 @@ public:
 	bool waterModeCollision;
 	int gameOverResPos;
 	bool hitTarget;
+	float angle;
 
 	Ball canonBall;
 	Water waterPool;
