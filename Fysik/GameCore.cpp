@@ -12,6 +12,7 @@ GameCore::GameCore() {	//skapa alla objekt med egenskaper
 	totalTime = 0;
 	waterMode = false;
 	waterModeCollision = false;
+	gameOverResPos = 0;
 }
 
 GameCore::~GameCore() {
@@ -24,7 +25,20 @@ bool GameCore::Update(float dt) {	//Detta händer per frame / logic
 
 	canonBall.update(dt, totalTime, waterModeCollision);
 	CollisionTest(allGround, waterPool);
+
+	gameOver = TestGameOver();
+
 	return (gameOver);
+}
+
+bool GameCore::TestGameOver() {
+	if (canonBall.speedX == 0 && canonBall.speedY == 0) {
+		gameOverResPos++;
+		if (gameOverResPos >= 3) {
+			return true;
+		}
+	}
+	return false;
 }
 
 void GameCore::draw(RenderTarget& target, RenderStates states) const {	//detta ritas per frame / graphics

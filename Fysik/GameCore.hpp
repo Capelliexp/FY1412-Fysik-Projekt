@@ -21,6 +21,7 @@ public:
 	long double totalTime;
 	bool waterMode;
 	bool waterModeCollision;
+	int gameOverResPos;
 
 	Ball canonBall;
 	Water waterPool;
@@ -30,6 +31,8 @@ public:
 	GameCore();
 	~GameCore();
 	bool Update(float dt);
+	bool TestGameOver();
+
 	int CollisionTest(Ground allGround, Water waterPool);
 	int HitTest(RectangleShape sq);
 	void HitGround(Vector2f normal);
