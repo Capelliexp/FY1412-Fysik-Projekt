@@ -131,6 +131,7 @@ void GameCore::HitGround(Vector2f normal){
 		else
 		{
 			//rock n roll
+
 		}
 
 
