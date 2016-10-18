@@ -10,6 +10,7 @@ using namespace sf;
 GameCore::GameCore() {	//skapa alla objekt med egenskaper
 	gameOver = false;
 	totalTime = 0;
+	waterMode = false;
 }
 
 GameCore::~GameCore() {
@@ -18,8 +19,10 @@ GameCore::~GameCore() {
 bool GameCore::Update(float dt) {	//Detta händer per frame / logic
 	totalTime += dt;
 
+	//canonBall.densityMedium = 1000;
+
 	canonBall.update(dt, totalTime);
-	CollisionTest(canonBall, allGround, waterPool);
+	CollisionTest(allGround, waterPool);
 	return (gameOver);
 }
 
@@ -32,26 +35,27 @@ void GameCore::draw(RenderTarget& target, RenderStates states) const {	//detta r
 	target.draw(canonBall);
 }
 
-int GameCore::CollisionTest(Ball ball, Ground ground, Water water)
+int GameCore::CollisionTest(Ground ground, Water water)
 {
-	if (HitTest(ball, ground.dirt1) == 1  || HitTest(ball, ground.dirt2) == 1  || HitTest(ball, ground.grass2) == 1)
-		HitGround(ball, Vector2f(0.0f, -1.0f));
-
-	if (HitTest(ball, ground.dirt3) == 1)	//OBS! dirt3 har 2 sidor
-		HitGround(ball, Vector2f(-1.0f, 0.0f));
-
-	if (HitTest(ball, water.waterRectangle) == 1)
-		HitWater(ball, water);
+	if (HitTest(ground.dirt1) == 1  || HitTest(ground.dirt2) == 1  || HitTest(ground.grass2) == 1){
+		HitGround(Vector2f(0.0f, -1.0f));
+	}
+	if (HitTest(ground.dirt3) == 1) {	//OBS! dirt3 har 2 sidor
+		HitGround(Vector2f(-1.0f, 0.0f));
+	}
+	if (HitTest(water.waterRectangle) == 1 && waterMode == false) {
+		HitWater();
+	}
 
 	return 0;
 }
 
 //http://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection/402010#402010
 
-int GameCore::HitTest(Ball ball, RectangleShape sq)
+int GameCore::HitTest(RectangleShape sq)
 {
-	float r = ball.ballShape.getRadius();
-	Vector2f ballPos = ball.realPosition;
+	float r = canonBall.ballShape.getRadius();
+	Vector2f ballPos = canonBall.realPosition;
 
 	Vector2f sqPos = sq.getPosition();
 	sqPos.x = sqPos.x + sq.getSize().x / 2;
@@ -59,7 +63,7 @@ int GameCore::HitTest(Ball ball, RectangleShape sq)
 
 	Vector2f HitTestDis = { abs(ballPos.x - sqPos.x), abs(ballPos.y - sqPos.y) };
 
-	std::cout << sq.getSize().x << std::endl;
+	//std::cout << sq.getSize().x << std::endl;
 
 	if (HitTestDis.x > ((sq.getSize().x) / 2 + r))
 		return 0;
@@ -74,19 +78,28 @@ int GameCore::HitTest(Ball ball, RectangleShape sq)
 	return 2;
 }
 
-void GameCore::HitGround(Ball ball, Vector2f normal)
+void GameCore::HitGround(Vector2f normal)
 {
-	Vector2f dir = { ball.ballShape.getPosition().x - ball.direction.x, ball.ballShape.getPosition().y - ball.direction.y };
+	Vector2f dir = { canonBall.ballShape.getPosition().x - canonBall.direction.x, canonBall.ballShape.getPosition().y - canonBall.direction.y };
 	dir.x = -dir.x / abs(dir.x + dir.y);
 	dir.y = -dir.y / abs(dir.x + dir.y);
 
 	float angle = ((acos(dir.x*normal.x + dir.y*normal.y))/180)*3.1415f;
 
-	ball.speedY = -ball.speedY;
-	//ball.startSpeedY = -ball.startSpeedY*5;
+	canonBall.speedY = -canonBall.speedY;
+	//canonBall.startSpeedY = -canonBall.startSpeedY*5;
 	totalTime = 0;
 }
 
-void GameCore::HitWater(Ball ball, Water water){
-	ball.densityMedium = 1000.0f;
+void GameCore::HitWater(){
+	waterMode = true;
+	canonBall.densityMedium = 1000.0f;
+	canonBall.viscosity = 1.002f;
+
+	canonBall.speedX = 0;
+	canonBall.speedY = 0;
+
+	canonBall.startSpeedX = 0;
+	canonBall.startSpeedY = 0;
+
 }

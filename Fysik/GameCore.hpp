@@ -19,6 +19,7 @@ private:
 public:
 	bool gameOver;
 	long double totalTime;
+	bool waterMode;
 
 	Ball canonBall;
 	Water waterPool;
@@ -28,9 +29,9 @@ public:
 	GameCore();
 	~GameCore();
 	bool Update(float dt);
-	int CollisionTest(Ball canonBall, Ground allGround, Water waterPool);
-	int HitTest(Ball ball, RectangleShape sq);
-	void HitGround(Ball ball, Vector2f normal);
-	void HitWater(Ball ball, Water water);
+	int CollisionTest(Ground allGround, Water waterPool);
+	int HitTest(RectangleShape sq);
+	void HitGround(Vector2f normal);
+	void HitWater();
 };
 #endif

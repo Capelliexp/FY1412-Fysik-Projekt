@@ -7,8 +7,8 @@
 Ball::Ball() {
 	startPosX = 50.0f;
 	startPosY = 350 - 8.0f - 30.0f;
-	startSpeedX = 100.0f;
-	startSpeedY = 80.0f;
+	startSpeedX = 40.0f;
+	startSpeedY = 40.0f;
 	spin = 0.0f;
 	radius = 0.085f;
 	weight = 25.0f;
@@ -37,7 +37,7 @@ Ball::~Ball() {
 }
 
 void Ball::update(float dt, long double totalTime){
-	//ReX = (densityMedium*radius * 2 / viscosity)*speedX;		//ändra viscosity när bollen är i vatten
+	//ReX = (densityMedium*radius * 2 / viscosity)*speedX;		//ändra viscosity & densityMedium när bollen är i vatten
 	//ReY = (densityMedium*radius * 2 / viscosity)*speedY;
 
 	//SphereDragCoefficienCalc();
@@ -45,7 +45,7 @@ void Ball::update(float dt, long double totalTime){
 	if (speedX >= 0)
 		airResX = -0.5f*CdX*densityMedium*(radius*radius*3.14f)*speedX*speedX;	//ändra densityMedium när bollen är i vatten
 	else
-		airResX = -0.5f*CdX*densityMedium*(radius*radius*3.14f)*speedX*speedX;
+		airResX = 0.5f*CdX*densityMedium*(radius*radius*3.14f)*speedX*speedX;
 
 	if(speedY>=0)
 		airResY = -0.5f*CdY*densityMedium*(radius*radius*3.14f)*speedY*speedY;
@@ -55,12 +55,14 @@ void Ball::update(float dt, long double totalTime){
 
 	std::cout << "airResX: " << airResX*dt << std::endl;
 	std::cout << "airResY: " << airResY*dt << std::endl;
+	std::cout << "speedX: " << speedX << std::endl;
+	std::cout << "speedY: " << speedY << std::endl;
 
 	direction = ballShape.getPosition();	//måste vara innan .move
 
 	ballShape.move((startSpeedX*dt) + ((airResX*dt)/weight), (-startSpeedY*dt) + (9.82f*dt*(totalTime*totalTime)/2) - ((airResY*dt)/weight));
 
-	startSpeedX = startSpeedX - ((airResX*dt) / weight);	//ny
+	startSpeedX = startSpeedX + ((airResX*dt) / weight);	//ny
 	startSpeedY = startSpeedY - ((airResY*dt) / weight);
 
 	speedX = (direction.x - ballShape.getPosition().x)*(1 / dt);
