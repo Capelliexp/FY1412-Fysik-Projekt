@@ -115,7 +115,7 @@ void GameCore::HitGround(Vector2f normal){
 		canonBall.startPosX = canonBall.ballShape.getPosition().x;
 		canonBall.startPosY = canonBall.ballShape.getPosition().y;
 
-		canonBall.startSpeedY = -canonBall.restitution*canonBall.startSpeedY;
+		canonBall.startSpeedY = canonBall.restitution*canonBall.startSpeedY;
 
 		//canonBall.speedY = -canonBall.speedY;
 		//canonBall.startSpeedY = -canonBall.startSpeedY*5;

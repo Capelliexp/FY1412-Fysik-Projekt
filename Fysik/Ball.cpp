@@ -8,8 +8,8 @@
 Ball::Ball() {
 	startPosX = 50.0f;
 	startPosY = 350 - 8.0f - 30.0f;
-	startSpeedX = 20.0f;
-	startSpeedY = 20.0f;
+	startSpeedX = 2.0f;
+	startSpeedY = 50.0f;
 	spin = 0.0f;
 	radius = 0.085f;
 	weight = 25.0f;
@@ -30,7 +30,7 @@ Ball::Ball() {
 	CdY = 0.5f;
 
 	windX = 5.0f;
-	windY = -1.0f;
+	windY = 5.0f;
 
 	ballShape.setRadius(radius*25);
 	ballShape.setPosition(startPosX, startPosY);
