@@ -102,7 +102,7 @@ void Ball::update(float dt, long double totalTime, bool waterModeCollision){
 	else
 		speedX = 0.0f;
 	speedY = (ballShape.getPosition().y - direction.y)*(1 / dt);
-	//speedTot = sqrt((speedX*speedX) + (speedY*speedY))+1.0e-8;
+	speedTot = sqrt((speedX*speedX) + (speedY*speedY));
 
 	realPosition.x = ballShape.getPosition().x + ballShape.getRadius() / 2;
 	realPosition.y = ballShape.getPosition().y + ballShape.getRadius() / 2;
