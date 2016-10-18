@@ -1,3 +1,13 @@
-﻿  GameCore.cpp
-c:\users\tina14\documents\fy1412-fysik-projekt\fysik\gamecore.cpp(94): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+﻿  Ball.cpp
+c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(75): warning C4244: '=': conversion from 'long double' to 'float', possible loss of data
+c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(78): warning C4244: '=': conversion from 'long double' to 'float', possible loss of data
+c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(83): warning C4244: '=': conversion from 'long double' to 'float', possible loss of data
+c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(95): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(96): warning C4244: '=': conversion from 'long double' to 'float', possible loss of data
+c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(99): warning C4244: '=': conversion from 'long double' to 'float', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Water.cpp
+  Sky.cpp
+  Ground.cpp
   Fysik.vcxproj -> C:\Users\tina14\Documents\FY1412-Fysik-Projekt\x64\Debug\Fysik.exe

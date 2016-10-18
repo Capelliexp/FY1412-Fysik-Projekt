@@ -36,6 +36,9 @@ public:
 	float CdX;
 	float CdY;
 
+	float windX;
+	float windY;
+
 	long double airResX;
 	long double airResY;
 
