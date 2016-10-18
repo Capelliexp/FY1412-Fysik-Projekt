@@ -80,6 +80,8 @@ int GameCore::CollisionTest(Ground ground, Water water)
 void GameCore::HitTarget() {
 	hitTarget = true;
 	gameOverResPos = 2;
+	canonBall.startSpeedX = 0.0f;
+	canonBall.startSpeedY = 0.0f;
 }
 
 //http://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection/402010#402010
