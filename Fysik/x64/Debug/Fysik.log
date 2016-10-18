@@ -1,10 +1,4 @@
-﻿  Ball.cpp
-c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(75): warning C4244: '=': conversion from 'long double' to 'float', possible loss of data
-c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(78): warning C4244: '=': conversion from 'long double' to 'float', possible loss of data
-c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(83): warning C4244: '=': conversion from 'long double' to 'float', possible loss of data
-c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(95): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(96): warning C4244: '=': conversion from 'long double' to 'float', possible loss of data
-c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(99): warning C4244: '=': conversion from 'long double' to 'float', possible loss of data
+﻿  GameCore.cpp
   Generating Code...
   Skipping... (no relevant changes detected)
   Water.cpp

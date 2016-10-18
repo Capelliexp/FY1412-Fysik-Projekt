@@ -86,12 +86,15 @@ void GameCore::HitGround(Vector2f normal){
 		dir.y = -dir.y / abs(dir.x + dir.y);
 
 		float angle = ((acos(dir.x*normal.x + dir.y*normal.y)) / 180)*3.1415f;
+
 		canonBall.startPosX = canonBall.ballShape.getPosition().x;
 		canonBall.startPosY = canonBall.ballShape.getPosition().y;
 
-		canonBall.speedY = -canonBall.speedY;
+		canonBall.startSpeedY = -canonBall.restitution*canonBall.startSpeedY;
+
+		//canonBall.speedY = -canonBall.speedY;
 		//canonBall.startSpeedY = -canonBall.startSpeedY*5;
-		canonBall.ballShape.move(0.2*normal.x, 0.2*normal.y);
+		//canonBall.ballShape.move(normal.x, normal.y);
 		totalTime = 0;
 	}
 	else {

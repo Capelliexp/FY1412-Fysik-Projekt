@@ -14,7 +14,7 @@ Ball::Ball() {
 	radius = 0.085f;
 	weight = 25.0f;
 	materialFriction = 0.0f;
-	restitution = 0.5f;
+	restitution = 0.5f; //https://books.google.se/books?id=GxWeu6QvENIC&pg=PA187&lpg=PA187&dq=Coefficient+of+restitution+for+cannonball&source=bl&ots=O0GQ2rQCIY&sig=Ppd8zApAhvH0tRa1J53wjS4cE-E&hl=sv&sa=X&ved=0ahUKEwjxwb-p1eTPAhUJ1SwKHYQ9DGYQ6AEIOjAC#v=onepage&q=Coefficient%20of%20restitution%20for%20cannonball&f=false
 
 	speedX = startSpeedX;
 	speedY = startSpeedY;
@@ -32,7 +32,7 @@ Ball::Ball() {
 	windX = 5.0f;
 	windY = -1.0f;
 
-	ballShape.setRadius(radius*100);
+	ballShape.setRadius(radius*25);
 	ballShape.setPosition(startPosX, startPosY);
 	ballShape.setFillColor(sf::Color(255, 0, 0));
 
@@ -56,15 +56,15 @@ void Ball::update(float dt, long double totalTime, bool waterModeCollision){
 	else
 		airResX = 0.5f*CdX*densityMedium*(radius*radius*3.14f)*speedX*speedX;
 
-	if(speedY>=0)
+	/*if(speedY>=0)
 		airResY = -0.5f*CdY*densityMedium*(radius*radius*3.14f)*speedY*speedY;
 	else
 		airResY = 0.5f*CdY*densityMedium*(radius*radius*3.14f)*speedY*speedY;
-	
+	*/
 
 	std::cout << "dt: " << dt << std::endl;
 	std::cout << "airResX: " << airResX << std::endl;
-	std::cout << "airResY: " << airResY << std::endl;
+	//std::cout << "airResY: " << airResY << std::endl;
 	std::cout << "speedX: " << speedX << std::endl;
 	std::cout << "speedY: " << speedY << std::endl;
 
