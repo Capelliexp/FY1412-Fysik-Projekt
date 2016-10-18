@@ -19,6 +19,7 @@ public:
 	float radius;
 	float weight;
 	float materialFriction;
+	float restitution;
 
 	float densityMedium;
 	float viscosity;

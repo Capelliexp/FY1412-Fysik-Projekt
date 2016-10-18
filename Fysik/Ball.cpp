@@ -8,12 +8,13 @@
 Ball::Ball() {
 	startPosX = 50.0f;
 	startPosY = 350 - 8.0f - 30.0f;
-	startSpeedX = 40.0f;
-	startSpeedY = 40.0f;
+	startSpeedX = 20.0f;
+	startSpeedY = 20.0f;
 	spin = 0.0f;
 	radius = 0.085f;
 	weight = 25.0f;
 	materialFriction = 0.0f;
+	restitution = 0.5f;
 
 	speedX = startSpeedX;
 	speedY = startSpeedY;
@@ -29,7 +30,7 @@ Ball::Ball() {
 	CdY = 0.5f;
 
 	windX = 5.0f;
-	windY = 1.0f;
+	windY = -1.0f;
 
 	ballShape.setRadius(radius*100);
 	ballShape.setPosition(startPosX, startPosY);
@@ -74,7 +75,7 @@ void Ball::update(float dt, long double totalTime, bool waterModeCollision){
 	
 	moveX = startPosX + (startSpeedX*totalTime);
 
-	if (densityMedium != 1.21f) {
+	if (densityMedium == 1.21f) {
 		moveX = moveX + windX*totalTime;
 	}
 
@@ -95,7 +96,7 @@ void Ball::update(float dt, long double totalTime, bool waterModeCollision){
 		speedTerminal = sqrt((2 * weight*9.82) / (densityMedium*CdX*radius*radius*3.1415));
 		moveY = startPosY - startSpeedY*totalTime + (speedTerminal*speedTerminal / 9.82)*log(cosh((9.82*totalTime) / (speedTerminal)));
 
-		if (densityMedium != 1.21f) {
+		if (densityMedium == 1.21f) {
 			moveY = moveY - windY*totalTime;
 		}
 
