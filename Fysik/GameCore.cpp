@@ -25,24 +25,25 @@ int GameCore::Update(float dt) {	//Detta händer per frame / logic
 	//canonBall.densityMedium = 1000;
 
 	canonBall.update(dt, totalTime, waterModeCollision);
-	CollisionTest(allGround, waterPool);
+	endPoof.update(hitTarget);
 
+	CollisionTest(allGround, waterPool);
 	gameOver = TestGameOver();
 
 	return (gameOver);
 }
 
-bool GameCore::TestGameOver() {
-	if (canonBall.speedX == 0 && canonBall.speedY == 0) {
+int GameCore::TestGameOver() {
+	if ((canonBall.speedX == 0 && canonBall.speedY == 0) || hitTarget == true) {
 		gameOverResPos++;
-		if (gameOverResPos >= 3) {
+		if (gameOverResPos >= 20) {
 			if (hitTarget == true)
 				return 2;
 			else
 				return 1;
 		}
 	}
-	return false;
+	return 0;
 }
 
 void GameCore::draw(RenderTarget& target, RenderStates states) const {	//detta ritas per frame / graphics
@@ -52,6 +53,7 @@ void GameCore::draw(RenderTarget& target, RenderStates states) const {	//detta r
 	target.draw(waterPool);
 	target.draw(allGround);
 	target.draw(canonBall);
+	target.draw(endPoof);
 }
 
 int GameCore::CollisionTest(Ground ground, Water water)
@@ -73,7 +75,8 @@ int GameCore::CollisionTest(Ground ground, Water water)
 }
 
 void GameCore::HitTarget() {
-
+	hitTarget = true;
+	gameOverResPos = 2;
 }
 
 //http://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection/402010#402010

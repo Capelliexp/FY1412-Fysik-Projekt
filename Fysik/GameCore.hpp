@@ -34,7 +34,7 @@ public:
 	GameCore();
 	~GameCore();
 	int Update(float dt);
-	bool TestGameOver();
+	int TestGameOver();
 
 	int CollisionTest(Ground allGround, Water waterPool);
 	int HitTest(RectangleShape sq);

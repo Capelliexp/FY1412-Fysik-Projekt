@@ -30,7 +30,7 @@ Ball::Ball() {
 	CdY = 0.5f;
 
 	windX = 5.0f;
-	windY = 5.0f;
+	windY = 0.0f;
 
 	ballShape.setRadius(radius*25);
 	ballShape.setPosition(startPosX, startPosY);
