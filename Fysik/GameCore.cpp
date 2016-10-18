@@ -7,7 +7,10 @@
 
 using namespace sf;
 
-GameCore::GameCore() {	//skapa alla objekt med egenskaper
+GameCore::GameCore(float vx, float vy) {	//skapa alla objekt med egenskaper
+	canonBall.startSpeedX = vx;
+	canonBall.startSpeedY = vy;
+	
 	gameOver = 0;
 	totalTime = 0;
 	waterMode = false;
@@ -127,10 +130,10 @@ void GameCore::HitGround(Vector2f normal){
 		if (abs(angle) < 45)
 			waterModeCollision = true;
 		else if(45 <= abs(angle) < 75 )
-			canonBall.startSpeedY = canonBall.restitution*canonBall.startSpeedY;
+			canonBall.startSpeedY = canonBall.restitution*canonBall.startSpeedY; //bortser från friktion
 		else
 		{
-			
+			canonBall.startSpeedY = 0.0f;
 		}
 
 

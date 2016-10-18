@@ -1,3 +1,7 @@
-﻿  GameCore.cpp
-c:\users\tina14\documents\fy1412-fysik-projekt\fysik\gamecore.cpp(129): warning C4804: '<': unsafe use of type 'bool' in operation
+﻿  main.cpp
+c:\users\tina14\documents\fy1412-fysik-projekt\fysik\main.cpp(18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\tina14\documents\fy1412-fysik-projekt\fysik\main.cpp(19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  GameCore.cpp
+c:\users\tina14\documents\fy1412-fysik-projekt\fysik\gamecore.cpp(132): warning C4804: '<': unsafe use of type 'bool' in operation
+  Generating Code...
   Fysik.vcxproj -> C:\Users\tina14\Documents\FY1412-Fysik-Projekt\x64\Debug\Fysik.exe

@@ -3,11 +3,22 @@
 #include <string>
 #include <iostream>
 #include "GameCore.hpp"
+#include <math.h>
 
 using namespace sf;
 
 int main() {
-	GameCore game;
+	int speed = 0;
+	int angle = 0;
+	std::cout << "Ange hastighet: ";
+	std::cin >> speed;
+	std::cout << "Ange vinkel (grader): ";
+	std::cin >> angle;
+
+	float vx = speed * sin(angle * (3.14 / 180));
+	float vy = speed * cos(angle * (3.14 / 180));
+
+	GameCore game(vx, vy);
 
 	RenderWindow window(VideoMode(1280, 720), "Fysik Projekt");
 	Clock gameTime;

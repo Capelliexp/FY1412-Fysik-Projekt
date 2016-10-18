@@ -32,7 +32,7 @@ public:
 	Sky skyBox;
 	Explosion endPoof;
 
-	GameCore();
+	GameCore(float vx, float vy);
 	~GameCore();
 	int Update(float dt);
 	int TestGameOver();
