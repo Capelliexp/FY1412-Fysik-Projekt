@@ -20,6 +20,7 @@ public:
 	bool gameOver;
 	long double totalTime;
 	bool waterMode;
+	bool waterModeCollision;
 
 	Ball canonBall;
 	Water waterPool;

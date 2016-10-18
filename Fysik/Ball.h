@@ -26,6 +26,7 @@ public:
 	float speedX;
 	float speedY;
 	float speedTot;
+	float speedTerminal;
 
 	float moveY;
 	float moveX;
@@ -49,7 +50,7 @@ public:
 	Ball();
 	~Ball();
 
-	void update(float dt, long double totalTime);
+	void update(float dt, long double totalTime, bool waterModeCollision);
 	void SphereDragCoefficienCalc();
 };
 #endif

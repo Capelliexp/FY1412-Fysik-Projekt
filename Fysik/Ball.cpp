@@ -9,24 +9,25 @@ Ball::Ball() {
 	startPosX = 50.0f;
 	startPosY = 350 - 8.0f - 30.0f;
 	startSpeedX = 40.0f;
-	startSpeedY = 25.0f;
+	startSpeedY = 40.0f;
 	spin = 0.0f;
 	radius = 0.085f;
 	weight = 25.0f;
 	materialFriction = 0.0f;
-	speedX = 1.0f;
-	speedY = 1.0f;
+	speedX = startSpeedX;
+	speedY = startSpeedY;
 	speedTot = 0;
+	speedTerminal = 0.0f;
 	moveX = 0.0f;
 	moveY = 0.0f;
 
-	densityMedium = 100.21f;		//densitet av det MEDIUM som bollen färdas igenom, byt till 1000 i vatten
+	densityMedium = 1.21f;		//densitet av det MEDIUM som bollen färdas igenom, byt till 1000 i vatten
 	viscosity = 0.0000183f;		//viskositet av luft
 
 	CdX = 0.5f;
 	CdY = 0.5f;
 
-	ballShape.setRadius(radius*47);
+	ballShape.setRadius(radius*100);
 	ballShape.setPosition(startPosX, startPosY);
 	ballShape.setFillColor(sf::Color(255, 0, 0));
 
@@ -39,7 +40,7 @@ Ball::Ball() {
 Ball::~Ball() {
 }
 
-void Ball::update(float dt, long double totalTime){
+void Ball::update(float dt, long double totalTime, bool waterModeCollision){
 	//ReX = (densityMedium*radius * 2 / viscosity)*speedX;		//ändra viscosity & densityMedium när bollen är i vatten
 	//ReY = (densityMedium*radius * 2 / viscosity)*speedY;
 
@@ -56,8 +57,9 @@ void Ball::update(float dt, long double totalTime){
 		airResY = 0.5f*CdY*densityMedium*(radius*radius*3.14f)*speedY*speedY;
 	
 
-	std::cout << "airResX: " << airResX*dt << std::endl;
-	std::cout << "airResY: " << airResY*dt << std::endl;
+	std::cout << "dt: " << dt << std::endl;
+	std::cout << "airResX: " << airResX << std::endl;
+	std::cout << "airResY: " << airResY << std::endl;
 	std::cout << "speedX: " << speedX << std::endl;
 	std::cout << "speedY: " << speedY << std::endl;
 
@@ -65,18 +67,41 @@ void Ball::update(float dt, long double totalTime){
 
 	//moveX = (startSpeedX*dt) + ((airResX*dt) / weight);
 	//moveY = (-startSpeedY*dt) + (9.82f*dt*(totalTime*totalTime) / 2) - ((airResY*dt) / weight);
+	
+	moveX = startPosX + (startSpeedX*totalTime) /*+ (airResX*dt)/weight*/;
+	if (startSpeedX > 10e-4)
+	{
+		startSpeedX = startSpeedX + (airResX / weight)*dt;
+		if (abs((airResX / weight)*dt) > abs(startSpeedX))
+		{
+			startSpeedX = 0.0f;
+			startPosX = ballShape.getPosition().x;
+		}
+	}
+	else
+		startSpeedX = 0.0f;
+	//moveY = startPosY - (startSpeedY*totalTime) + (0.5f * 9.82f * totalTime * totalTime); //https://en.wikipedia.org/wiki/Free_fall  https://en.wikipedia.org/wiki/Terminal_velocity#Examples
 
-	moveX = startPosX + (startSpeedX*totalTime) + (airResX*dt)/weight;
-	moveY = startPosY - (startSpeedY*totalTime) + (0.5f * 9.82f * totalTime * totalTime) + (airResY*dt)/weight; //https://en.wikipedia.org/wiki/Free_fall  https://en.wikipedia.org/wiki/Terminal_velocity#Examples
+	if (waterModeCollision == false) {
+		speedTerminal = sqrt((2 * weight*9.82) / (densityMedium*CdX*radius*radius*3.1415));
+		moveY = startPosY - startSpeedY*totalTime + (speedTerminal*speedTerminal / 9.82)*log(cosh((9.82*totalTime) / (speedTerminal)));
+	}
+	/*else {
+		moveY = 0;
+	}*/
 
-	//ballShape.move(moveX, moveY);
+	
+
 	ballShape.setPosition(moveX, moveY);
+	//ballShape.move(((airResX*dt) / weight), ((airResY*dt) / weight));
 
 	//startSpeedX = startSpeedX + ((airResX*dt) / weight);	//ny
 	//startSpeedY = startSpeedY - ((airResY*dt) / weight);
-
-	speedX = (direction.x - ballShape.getPosition().x)*(1 / dt);
-	speedY = (direction.y - ballShape.getPosition().y)*(1 / dt);
+	if (startSpeedX != 0.0f)
+		speedX = (ballShape.getPosition().x - direction.x)*(1 / dt);
+	else
+		speedX = 0.0f;
+	speedY = (ballShape.getPosition().y - direction.y)*(1 / dt);
 	//speedTot = sqrt((speedX*speedX) + (speedY*speedY))+1.0e-8;
 
 	realPosition.x = ballShape.getPosition().x + ballShape.getRadius() / 2;

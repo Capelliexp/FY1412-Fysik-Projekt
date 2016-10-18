@@ -11,6 +11,7 @@ GameCore::GameCore() {	//skapa alla objekt med egenskaper
 	gameOver = false;
 	totalTime = 0;
 	waterMode = false;
+	waterModeCollision = false;
 }
 
 GameCore::~GameCore() {
@@ -21,7 +22,7 @@ bool GameCore::Update(float dt) {	//Detta händer per frame / logic
 
 	//canonBall.densityMedium = 1000;
 
-	canonBall.update(dt, totalTime);
+	canonBall.update(dt, totalTime, waterModeCollision);
 	CollisionTest(allGround, waterPool);
 	return (gameOver);
 }
@@ -78,20 +79,26 @@ int GameCore::HitTest(RectangleShape sq)
 	return 2;
 }
 
-void GameCore::HitGround(Vector2f normal)
-{
-	Vector2f dir = { canonBall.ballShape.getPosition().x - canonBall.direction.x, canonBall.ballShape.getPosition().y - canonBall.direction.y };
-	dir.x = -dir.x / abs(dir.x + dir.y);
-	dir.y = -dir.y / abs(dir.x + dir.y);
+void GameCore::HitGround(Vector2f normal){
+	if (waterMode == false) {
+		Vector2f dir = { canonBall.ballShape.getPosition().x - canonBall.direction.x, canonBall.ballShape.getPosition().y - canonBall.direction.y };
+		dir.x = -dir.x / abs(dir.x + dir.y);
+		dir.y = -dir.y / abs(dir.x + dir.y);
 
-	float angle = ((acos(dir.x*normal.x + dir.y*normal.y))/180)*3.1415f;
-	canonBall.startPosX = canonBall.ballShape.getPosition().x;
-	canonBall.startPosY = canonBall.ballShape.getPosition().y;
+		float angle = ((acos(dir.x*normal.x + dir.y*normal.y)) / 180)*3.1415f;
+		canonBall.startPosX = canonBall.ballShape.getPosition().x;
+		canonBall.startPosY = canonBall.ballShape.getPosition().y;
 
-	canonBall.speedY = -canonBall.speedY;
-	//canonBall.startSpeedY = -canonBall.startSpeedY*5;
-	canonBall.ballShape.move(0.2*normal.x, 0.2*normal.y);
-	totalTime = 0;
+		canonBall.speedY = -canonBall.speedY;
+		//canonBall.startSpeedY = -canonBall.startSpeedY*5;
+		canonBall.ballShape.move(0.2*normal.x, 0.2*normal.y);
+		totalTime = 0;
+	}
+	else {
+		waterModeCollision = true;
+	}
+
+	
 }
 
 void GameCore::HitWater(){
