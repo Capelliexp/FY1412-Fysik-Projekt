@@ -130,8 +130,7 @@ void GameCore::HitGround(Vector2f normal){
 			canonBall.startSpeedY = canonBall.restitution*canonBall.startSpeedY;
 		else
 		{
-			//rock n roll
-
+			
 		}
 
 
