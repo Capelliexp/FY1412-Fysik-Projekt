@@ -3,7 +3,7 @@
 #include "Sky.h"
 
 Sky::Sky() {
-	skyRectangle.setSize(sf::Vector2f(1280, 350));
+	skyRectangle.setSize(sf::Vector2f(1280, 355));
 	skyRectangle.setFillColor(sf::Color(255, 255, 255));
 	skyRectangle.setPosition(0, 0);
 

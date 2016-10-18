@@ -2,13 +2,14 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <math.h>
 #include "Ball.h"
 
 Ball::Ball() {
 	startPosX = 50.0f;
 	startPosY = 350 - 8.0f - 30.0f;
 	startSpeedX = 40.0f;
-	startSpeedY = 40.0f;
+	startSpeedY = 25.0f;
 	spin = 0.0f;
 	radius = 0.085f;
 	weight = 25.0f;
@@ -16,9 +17,11 @@ Ball::Ball() {
 	speedX = 1.0f;
 	speedY = 1.0f;
 	speedTot = 0;
+	moveX = 0.0f;
+	moveY = 0.0f;
 
-	densityMedium = 1.21f;	//densitet av det MEDIUM som bollen färdas igenom, byt till 1000 i vatten
-	viscosity = 0.0000183f;	//viskositet av luft
+	densityMedium = 100.21f;		//densitet av det MEDIUM som bollen färdas igenom, byt till 1000 i vatten
+	viscosity = 0.0000183f;		//viskositet av luft
 
 	CdX = 0.5f;
 	CdY = 0.5f;
@@ -60,14 +63,21 @@ void Ball::update(float dt, long double totalTime){
 
 	direction = ballShape.getPosition();	//måste vara innan .move
 
-	ballShape.move((startSpeedX*dt) + ((airResX*dt)/weight), (-startSpeedY*dt) + (9.82f*dt*(totalTime*totalTime)/2) - ((airResY*dt)/weight));
+	//moveX = (startSpeedX*dt) + ((airResX*dt) / weight);
+	//moveY = (-startSpeedY*dt) + (9.82f*dt*(totalTime*totalTime) / 2) - ((airResY*dt) / weight);
 
-	startSpeedX = startSpeedX + ((airResX*dt) / weight);	//ny
-	startSpeedY = startSpeedY - ((airResY*dt) / weight);
+	moveX = startPosX + (startSpeedX*totalTime) + (airResX*dt)/weight;
+	moveY = startPosY - (startSpeedY*totalTime) + (0.5f * 9.82f * totalTime * totalTime) + (airResY*dt)/weight; //https://en.wikipedia.org/wiki/Free_fall  https://en.wikipedia.org/wiki/Terminal_velocity#Examples
+
+	//ballShape.move(moveX, moveY);
+	ballShape.setPosition(moveX, moveY);
+
+	//startSpeedX = startSpeedX + ((airResX*dt) / weight);	//ny
+	//startSpeedY = startSpeedY - ((airResY*dt) / weight);
 
 	speedX = (direction.x - ballShape.getPosition().x)*(1 / dt);
 	speedY = (direction.y - ballShape.getPosition().y)*(1 / dt);
-	//speedTot = sqrt((speedX*speedX) + (speedY*speedY));
+	//speedTot = sqrt((speedX*speedX) + (speedY*speedY))+1.0e-8;
 
 	realPosition.x = ballShape.getPosition().x + ballShape.getRadius() / 2;
 	realPosition.y = ballShape.getPosition().y + ballShape.getRadius() / 2;

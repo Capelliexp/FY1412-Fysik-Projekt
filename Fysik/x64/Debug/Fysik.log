@@ -1,21 +1,10 @@
-﻿Build started 2016-10-17 12:13:11.
-     1>Project "C:\Users\Capelli\Git Repos\FY1412-Fysik-Projekt\Fysik\Fysik.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /I"C:\Users\Capelli\Git Repos\FY1412-Fysik-Projekt\Fysik\\SFML-2.4.0\include" /ZI /nologo /W3 /WX- /Od /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt Ball.cpp GameCore.cpp
-         GameCore.cpp
-         Ball.cpp
-     1>c:\users\capelli\git repos\fy1412-fysik-projekt\fysik\ball.cpp(63): warning C4244: 'argument': conversion from 'long double' to 'float', possible loss of data
-         Generating Code...
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Capelli\Git Repos\FY1412-Fysik-Projekt\x64\Debug\Fysik.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Capelli\Git Repos\FY1412-Fysik-Projekt\Fysik\\SFML-2.4.0\lib" "sfml-graphics-d.lib" "sfml-window-d.lib" "sfml-system-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Capelli\Git Repos\FY1412-Fysik-Projekt\x64\Debug\Fysik.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Capelli\Git Repos\FY1412-Fysik-Projekt\x64\Debug\Fysik.lib" /MACHINE:X64 x64\Debug\Ball.obj
-         x64\Debug\GameCore.obj
-         x64\Debug\Ground.obj
-         x64\Debug\main.obj
-         x64\Debug\Sky.obj
-         x64\Debug\Water.obj
-         Fysik.vcxproj -> C:\Users\Capelli\Git Repos\FY1412-Fysik-Projekt\x64\Debug\Fysik.exe
-     1>Done Building Project "C:\Users\Capelli\Git Repos\FY1412-Fysik-Projekt\Fysik\Fysik.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:02.41
+﻿  Ball.cpp
+c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(69): warning C4244: '=': conversion from 'long double' to 'float', possible loss of data
+c:\users\tina14\documents\fy1412-fysik-projekt\fysik\ball.cpp(70): warning C4244: '=': conversion from 'long double' to 'float', possible loss of data
+  Generating Code...
+  Compiling...
+  main.cpp
+  GameCore.cpp
+c:\users\tina14\documents\fy1412-fysik-projekt\fysik\gamecore.cpp(93): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Fysik.vcxproj -> C:\Users\tina14\Documents\FY1412-Fysik-Projekt\x64\Debug\Fysik.exe

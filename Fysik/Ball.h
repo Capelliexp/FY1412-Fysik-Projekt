@@ -27,13 +27,16 @@ public:
 	float speedY;
 	float speedTot;
 
+	float moveY;
+	float moveX;
+
 	float ReX;
 	float ReY;
 	float CdX;
 	float CdY;
 
-	float airResX;
-	float airResY;
+	long double airResX;
+	long double airResY;
 
 	Vector2f direction;
 	Vector2f realPosition;

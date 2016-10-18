@@ -5,9 +5,9 @@
 Water::Water() {
 	temp = 20;	//behaglig badtemperatur
 
-	waterRectangle.setSize(sf::Vector2f(400, 200));	//bredd, höjd
+	waterRectangle.setSize(sf::Vector2f(400, 195));	//bredd, höjd
 	waterRectangle.setFillColor(sf::Color(50, 50, 255));
-	waterRectangle.setPosition(500, 350);			//koordinater på övre-vänstra hörnet
+	waterRectangle.setPosition(500, 355);			//koordinater på övre-vänstra hörnet
 
 	waterTex.loadFromFile("../textures/water.jpg");
 	const Texture *tex1 = &waterTex;
