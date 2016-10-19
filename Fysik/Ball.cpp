@@ -13,8 +13,10 @@ Ball::Ball() {
 	spin = 0.0f;
 	radius = 0.085f;
 	weight = 25.0f;
-	materialFriction = 0.0f;
+	friction = 0.3f;
 	restitution = 0.5f; //https://books.google.se/books?id=GxWeu6QvENIC&pg=PA187&lpg=PA187&dq=Coefficient+of+restitution+for+cannonball&source=bl&ots=O0GQ2rQCIY&sig=Ppd8zApAhvH0tRa1J53wjS4cE-E&hl=sv&sa=X&ved=0ahUKEwjxwb-p1eTPAhUJ1SwKHYQ9DGYQ6AEIOjAC#v=onepage&q=Coefficient%20of%20restitution%20for%20cannonball&f=false
+
+	roll = false;
 
 	speedX = startSpeedX;
 	speedY = startSpeedY;
@@ -29,7 +31,7 @@ Ball::Ball() {
 	CdX = 0.5f;
 	CdY = 0.5f;
 
-	windX = 5.0f;
+	windX = 0.0f;
 	windY = 0.0f;
 
 	ballShape.setRadius(radius*25);
@@ -67,6 +69,7 @@ void Ball::update(float dt, long double totalTime, bool waterModeCollision){
 	//std::cout << "airResY: " << airResY << std::endl;
 	std::cout << "speedX: " << speedX << std::endl;
 	std::cout << "speedY: " << speedY << std::endl;
+	std::cout << "spin: " << spin << std::endl;
 
 	direction = ballShape.getPosition();	//måste vara innan .move
 
@@ -77,25 +80,59 @@ void Ball::update(float dt, long double totalTime, bool waterModeCollision){
 	{
 		startSpeedX = 0.0f;
 		windX = 0.0f;
+		//spin = 0.0;
+		//friction = 0.0f;
+		//roll = false;
 	}
 
 	moveX = startPosX + (startSpeedX*totalTime);
 
-	if (densityMedium == 1.21f) {
-		moveX = moveX + windX*totalTime;
-	}
-
-	if (startSpeedX > 10e-4)
+	if (densityMedium < 100)
 	{
-		startSpeedX = startSpeedX + (airResX / weight)*dt;
-		if (abs((airResX / weight)*dt) > abs(startSpeedX))
+		if (roll == false)
 		{
-			startSpeedX = 0.0f;
-			startPosX = ballShape.getPosition().x;
+			if (densityMedium == 1.21f) {
+				moveX = moveX + windX*totalTime;
+			}
+
+			if (startSpeedX > 10e-4)
+			{
+				startSpeedX = startSpeedX + (airResX / weight)*dt;
+				if (abs((airResX / weight)*dt) > abs(startSpeedX))
+				{
+					startSpeedX = 0.0f;
+					startPosX = ballShape.getPosition().x;
+				}
+			}
+			else
+				startSpeedX = 0.0f;
+		}
+		else
+		{
+			if (densityMedium < 100)
+				startSpeedY = 0.0f;
+			tempS = spin + ((5 * friction*9.82) / (2 * radius));
+
+			if (startSpeedX < spin*radius)
+			{
+				tempV = startSpeedX - 0.1*friction*9.82*dt;
+			}
+			else
+				tempV = startSpeedX - friction*9.82*dt;
+
+			startSpeedX = tempV;
+			spin = tempS;
+			//ballShape.rotate((spin*180)/3.1415);
 		}
 	}
 	else
-		startSpeedX = 0.0f;
+	{
+		spin = 0;
+		startSpeedX = 0;
+	}
+		
+	
+	
 	//moveY = startPosY - (startSpeedY*totalTime) + (0.5f * 9.82f * totalTime * totalTime); //https://en.wikipedia.org/wiki/Free_fall  https://en.wikipedia.org/wiki/Terminal_velocity#Examples
 
 	if (waterModeCollision == false) {
@@ -107,9 +144,7 @@ void Ball::update(float dt, long double totalTime, bool waterModeCollision){
 		}
 
 	}
-	/*else {
-		moveY = 0;
-	}*/
+	
 
 	
 
@@ -122,6 +157,7 @@ void Ball::update(float dt, long double totalTime, bool waterModeCollision){
 		speedX = (ballShape.getPosition().x - direction.x)*(1 / dt);
 	else
 		speedX = 0.0f;
+
 	speedY = (ballShape.getPosition().y - direction.y)*(1 / dt);
 	speedTot = sqrt((speedX*speedX) + (speedY*speedY));
 

@@ -17,6 +17,7 @@ GameCore::GameCore(float vx, float vy) {	//skapa alla objekt med egenskaper
 	waterModeCollision = false;
 	gameOverResPos = 0;
 	hitTarget = false;
+	counter = 0.0f;
 }
 
 GameCore::~GameCore() {
@@ -24,6 +25,7 @@ GameCore::~GameCore() {
 
 int GameCore::Update(float dt) {	//Detta händer per frame / logic
 	totalTime += dt;
+	this->dt = dt;
 
 	//canonBall.densityMedium = 1000;
 
@@ -113,6 +115,8 @@ int GameCore::HitTest(RectangleShape sq)
 }
 
 void GameCore::HitGround(Vector2f normal){
+	counter += 1;
+	std::cout << counter << std::endl;
 	if (waterMode == false) {
 		Vector2f dir = { canonBall.ballShape.getPosition().x - canonBall.direction.x, canonBall.ballShape.getPosition().y - canonBall.direction.y };
 		angle = abs(dir.x + dir.y);
@@ -127,16 +131,40 @@ void GameCore::HitGround(Vector2f normal){
 		angle = (angle * 180)/3.1415f;
 
 		canonBall.startPosX = canonBall.ballShape.getPosition().x;
-		canonBall.startPosY = canonBall.ballShape.getPosition().y;
+		canonBall.startPosY = canonBall.ballShape.getPosition().y-1;
 
-		if (abs(angle) < 45)
+		std::cout << "bloody angle is: " << angle << std::endl;
+
+		if (angle < 45.0f) {
 			waterModeCollision = true;
-		else if(45 <= abs(angle) < 75 )
-			canonBall.startSpeedY = canonBall.restitution*canonBall.startSpeedY; //bortser från friktion
-		else
-		{
-			canonBall.startSpeedY = 0.0f;
 		}
+		else if (45.0f <= angle && angle < 75.0f) {
+			canonBall.startSpeedY = canonBall.restitution*canonBall.startSpeedY; //bortser från friktion
+			//canonBall.ballShape.move(0, -50);
+			totalTime = 0;
+		}
+			
+		else if (angle > 75.0f){
+			std::cout << "rolling on the river..." << std::endl;
+			canonBall.roll = true;
+			canonBall.startSpeedY = 0;
+			/*canonBall.startSpeedY = 0.0f;
+			tempS = canonBall.spin + ( (5*canonBall.friction*9.82) / (2*canonBall.radius) );
+
+			if (canonBall.startSpeedX < canonBall.spin*canonBall.radius)
+			{
+				tempV = canonBall.startSpeedX - 0.1*canonBall.friction*9.82*dt;
+			}
+			else
+				tempV=canonBall.startSpeedX - canonBall.friction*9.82*dt;
+
+			canonBall.startSpeedX = tempV;
+			canonBall.spin = tempS;*/
+		}
+		else {
+			std::cout << "error in collision" << std::endl;
+		}
+			
 
 
 		//canonBall.speedY = -canonBall.speedY;

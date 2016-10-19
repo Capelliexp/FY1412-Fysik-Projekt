@@ -25,6 +25,10 @@ public:
 	int gameOverResPos;
 	bool hitTarget;
 	float angle;
+	float tempV;
+	float tempS;
+	float dt;
+	float counter;
 
 	Ball canonBall;
 	Water waterPool;

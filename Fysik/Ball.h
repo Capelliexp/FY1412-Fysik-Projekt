@@ -12,14 +12,18 @@ private:
 	virtual void draw(RenderTarget& target, RenderStates states) const;
 public:
 	float startPosX;
+	float tempV;
 	float startPosY;
 	float startSpeedX;
 	float startSpeedY;
 	float spin;
+	float tempS;
 	float radius;
 	float weight;
-	float materialFriction;
+	float friction;
 	float restitution;
+
+	bool roll;
 
 	float densityMedium;
 	float viscosity;
